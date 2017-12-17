@@ -9,10 +9,10 @@ module.exports = {
     checkNull: function (req,res,next) {
         var data = req.body;
         console.log(data);
-        if (!data.username || !data.password || !data.fullName || !data.email || !data.phone) {
+        if (!data.username || !data.password || !data.fullName || !data.email || !data.phone || !data.address) {
             res.send({
                 'status': '403',
-                'message': 'Username, password, full name, email, phone can\'t be null or undefined'
+                'message': 'Username, password, full name, address, email, phone can\'t be null or undefined'
             });
             return;
         }
@@ -56,6 +56,7 @@ module.exports = {
         var cusInfo = new cusInfoModel({
             "fullName": data.fullName,
             "birthDay": data.birthDay,
+            "address": data.address,
             "email": data.email,
             "phone": data.phone,
             "gender": Number(data.gender)

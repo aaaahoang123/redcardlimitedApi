@@ -35,6 +35,10 @@ var cusInfoSchema = mongoose.Schema({
         required: true
     },
     birthDay: String,
+    address: {
+        type: String,
+        required: true
+    },
     email: {
         type: String,
         required: true
