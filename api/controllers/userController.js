@@ -69,6 +69,7 @@ module.exports = {
                 return;
             }
         }).then(function () {
+            console.log(cusInfo);
             // create user Account for customer
             var userAcc = new userAccModel({
                 username: data.username,

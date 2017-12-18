@@ -2,6 +2,7 @@
 
 var jwt = require('jwt-simple'),
     userModel = require('../models/userModel'),
+    credentialModel = require('../models/credentialModel'),
     userAcc = userModel.userAcc;
 
 module.exports = {
@@ -28,9 +29,19 @@ module.exports = {
   },
   login: function (req, res, next) {
       var token = jwt.encode(req.cpResult[0], 'anhHoangDepTrai');
-      res.send({
-          'username': req.cpResult[0].username,
-          'token': token
+      var refresh = jwt.encode(req.cpResult[0]._id, 'refresh');
+      var credential = new credentialModel({
+          accountId: req.cpResult[0]._id,
+          token: token,
+          refreshToken: refresh
       });
+      credential.save(function (err, result) {
+          if (err) {
+              console.log(err);
+              res.send(err);
+              return;
+          }
+          res.send(result);
+      })
   }
 };
