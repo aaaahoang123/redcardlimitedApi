@@ -19,7 +19,12 @@ var credentialSchema = new mongoose.Schema({
         type: Date,
         default: +new Date() + 7*24*60*60*1000
     },
-    refreshToken: String
+    refreshToken: String,
+    status: {
+        type: Number,
+        enum: [1,-1],
+        default: 1
+    }
 });
 
 module.exports = mongoose.model('credentials', credentialSchema);

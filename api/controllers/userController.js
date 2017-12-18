@@ -8,7 +8,6 @@ module.exports = {
     // check null của request
     checkNull: function (req,res,next) {
         var data = req.body;
-        console.log(data);
         if (!data.username || !data.password || !data.fullName || !data.email || !data.phone || !data.address) {
             res.send({
                 'status': '403',

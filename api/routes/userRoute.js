@@ -4,8 +4,7 @@ const express = require('express'),
 var userControllers = require('../controllers/userController');
 
 // Register a new account
-router.post('/', userControllers.checkNull, userControllers.validateNamePass, userControllers.checkExistUserName, userControllers.addNewAccount)
-    .get('/', function (req, res) {
+router.post('/', userControllers.checkNull, userControllers.validateNamePass, userControllers.checkExistUserName, userControllers.addNewAccount).get('/', function (req, res) {
         res.send('DKM mạng');
     });
 

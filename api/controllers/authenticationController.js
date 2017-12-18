@@ -5,6 +5,21 @@ var jwt = require('jwt-simple'),
     credentialModel = require('../models/credentialModel'),
     userAcc = userModel.userAcc;
 
+function makeAToken(string) {
+    var token = "", num;
+    var code = 'Anh Hoang Dep Trai';
+    for (var i=0; i<string.length; i++) {
+        num = string[i].charCodeAt();
+        token += num.toString(Math.floor((Math.random() * 10)+26));
+    }
+    token += '.';
+    for (i=0; i<code.length; i++) {
+        num = code[i].charCodeAt();
+        token += num.toString(Math.floor((Math.random() * 10)+26));
+    }
+    return token;
+}
+
 module.exports = {
   checkUsername: function (req, res, next) {
     userAcc.find({username: req.body.username}, function (err, result) {
@@ -28,7 +43,7 @@ module.exports = {
       })
   },
   login: function (req, res, next) {
-      var token = jwt.encode(req.cpResult[0], 'anhHoangDepTrai');
+      var token = makeAToken(req.body.username);
       var refresh = jwt.encode(req.cpResult[0]._id, 'refresh');
       var credential = new credentialModel({
           accountId: req.cpResult[0]._id,
