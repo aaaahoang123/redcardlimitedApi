@@ -3,7 +3,7 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     cors = require('cors'),
-    port = Number(process.env.PORT || 3000);
+    port = Number(process.env.PORT || 8080);
 
 var user = require('./api/routes/userRoute'),
     authentication = require('./api/routes/authenticationRoute');
