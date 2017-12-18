@@ -12,6 +12,7 @@
     "express": "^4.16.2",
     "jwt-simple": "^0.5.1",
     "mongoose": "~4.2.4",
+    "mongodb": "^3.0.0-rc0",
     "cors": "^2.8.4",
     "nodemon": "^1.13.3"
   },
