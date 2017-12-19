@@ -28,6 +28,14 @@ module.exports = {
             res.send(err);
             return;
         }
+        else if (result.length === 0) {
+            res.status = 404;
+            res.send({
+                'status': '404',
+                'error': 'Invalid username'
+            });
+            return;
+        }
         next();
     })
   },
@@ -36,6 +44,14 @@ module.exports = {
           if (err) {
               console.log(err);
               res.send(err);
+              return;
+          }
+          else if (result.length === 0) {
+              res.status = 404;
+              res.send({
+                  'status': '404',
+                  'error': 'Invalid password'
+              });
               return;
           }
           req.cpResult = result;

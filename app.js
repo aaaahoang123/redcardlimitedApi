@@ -6,13 +6,14 @@ const express = require('express'),
 
 
 var user = require('./api/routes/userRoute'),
-    authentication = require('./api/routes/authenticationRoute');
+    authentication = require('./api/routes/authenticationRoute'),
+   product = require('./api/routes/productRoute');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://aaaahoang123:q07cmf4gt1kb@ds141796.mlab.com:41796/rclapi');
 
 // cors to allow post, put method
 app.use(cors());
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 3000));
 
 //body parser to read the data
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,6 +22,7 @@ app.use(bodyParser.json());
 
 app.use('/api/user', user);
 app.use('/api/authentication', authentication);
+app.use('/api/product', product);
 
 app.listen(app.get('port'), function () {
    console.log('App run on port: ' + app.get('port'));
