@@ -33,6 +33,6 @@ app.use('/api/brands', brands);
 
 
 app.listen(app.get('port'), function () {
-   console.log('App run on port: ' + app.get('port'));
+   console.log('App run on por: ' + app.get('port'));
 });
 module.exports = app;
