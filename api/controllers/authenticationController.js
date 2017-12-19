@@ -29,7 +29,7 @@ module.exports = {
             return;
         }
         else if (result.length === 0) {
-            res.status = 404;
+            res.status(404);
             res.send({
                 'status': '404',
                 'error': 'Invalid username'
@@ -47,7 +47,7 @@ module.exports = {
               return;
           }
           else if (result.length === 0) {
-              res.status = 404;
+              res.status(404);
               res.send({
                   'status': '404',
                   'error': 'Invalid password'
