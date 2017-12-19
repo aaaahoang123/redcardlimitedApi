@@ -14,7 +14,9 @@
     "mongoose": "~4.2.4",
     "mongodb": "^3.0.0-rc0",
     "cors": "^2.8.4",
-    "nodemon": "^1.13.3"
+    "nodemon": "^1.13.3",
+    "express-fileupload": "^0.3.0",
+    "file-upload": "^0.0.0"
   },
   "author": "Do Hoang",
   "license": "ISC"
