@@ -1,8 +1,11 @@
 'use strict';
 
 const mongoose = require('mongoose');
-
-var productSchema = mongoose.Schema({
+var imagesSchema = new mongoose.Schema({
+    bigImgs: [String],
+    smallImg: [String],
+});
+var productSchema = new mongoose.Schema({
     name: {
         type: String,
         required: 'Product name can\'t be null'
@@ -23,10 +26,7 @@ var productSchema = mongoose.Schema({
         type: String,
         required: 'Description can\'t be null'
     },
-    images: {
-        bigImgs: [String],
-        smallImgs: [String]
-    },
+    images: imagesSchema,
     price: {
         type: String,
         require: 'Price is the most important'

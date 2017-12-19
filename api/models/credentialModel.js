@@ -11,6 +11,12 @@ var credentialSchema = new mongoose.Schema({
         type: String,
         required: 'Must have token to insert here'
     },
+    type: {
+      type: Number,
+      required: 'Must has type of user',
+      enum: [0,1],
+      default: 1
+    },
     createdAt: {
         type: Date,
         default: Date.now

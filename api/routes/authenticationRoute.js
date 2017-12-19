@@ -3,6 +3,7 @@ const express = require('express'),
 
 var authController = require('../controllers/authenticationController');
 
-router.post('/', authController.checkUsername, authController.checkPassword, authController.login);
+router.post('/', authController.checkUsername, authController.checkPassword, authController.login)
+    .delete('/', authController.logout);
 
 module.exports = router;

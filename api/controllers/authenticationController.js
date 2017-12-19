@@ -64,7 +64,8 @@ module.exports = {
       var credential = new credentialModel({
           accountId: req.cpResult[0]._id,
           token: token,
-          refreshToken: refresh
+          refreshToken: refresh,
+          type: req.cpResult[0].type
       });
       credential.save(function (err, result) {
           if (err) {
@@ -73,6 +74,23 @@ module.exports = {
               return;
           }
           res.send(result);
+      })
+  },
+  logout: function (req, res, next) {
+      credentialModel.delete({token: req.body.token}, function (err) {
+          if (err) {
+              console.log(err);
+              res.status(500);
+              res.send({
+                  'status': 500,
+                  'error': 'Server\'s error'
+              });
+              return;
+          }
+          res.send({
+              'status': '200',
+              'message': 'Logout success'
+          })
       })
   }
 };

@@ -9,7 +9,8 @@ const express = require('express'),
 var user = require('./api/routes/userRoute'),
     authentication = require('./api/routes/authenticationRoute'),
     product = require('./api/routes/productRoute'),
-    uploadImg = require('./api/routes/uploadImgRoute');
+    uploadImg = require('./api/routes/uploadImgRoute'),
+    brands = require('./api/routes/brandsRoute');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://aaaahoang123:q07cmf4gt1kb@ds141796.mlab.com:41796/rclapi');
 
@@ -28,6 +29,7 @@ app.use('/api/user', user);
 app.use('/api/authentication', authentication);
 app.use('/api/product', product);
 app.use('/api/images', uploadImg);
+app.use('/api/brands', brands);
 
 
 app.listen(app.get('port'), function () {
