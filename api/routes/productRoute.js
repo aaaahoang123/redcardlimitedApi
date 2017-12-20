@@ -1,5 +1,6 @@
 const express= require('express'),
     router = express.Router(),
+    brandController = require('../controllers/brandsController'),
     controllers = require('../controllers/productController');
 
 router.get('/', function (req, res, next) {
@@ -16,6 +17,7 @@ router.get('/', function (req, res, next) {
         controllers.getAll(req, res, next);
     }
 })
-    .get('/:id', controllers.getById);
+    .get('/:id', controllers.getById)
+    .post('/', brandController.checkToken, controllers.postAProduct);
 
 module.exports = router;

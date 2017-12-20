@@ -15,7 +15,7 @@ module.exports = {
                 });
                 return;
             }
-            if (result.type !== 0) {
+            if (result[0].type !== 0) {
                 res.status(550);
                 res.send({
                     status: '550',
