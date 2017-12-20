@@ -10,7 +10,8 @@ var user = require('./api/routes/userRoute'),
     authentication = require('./api/routes/authenticationRoute'),
     product = require('./api/routes/productRoute'),
     uploadImg = require('./api/routes/uploadImgRoute'),
-    brands = require('./api/routes/brandsRoute');
+    brands = require('./api/routes/brandsRoute'),
+    occasions= require('./api/routes/occasionsRoute');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://aaaahoang123:q07cmf4gt1kb@ds141796.mlab.com:41796/rclapi');
 
@@ -27,9 +28,10 @@ app.use(bodyParser.json());
 
 app.use('/api/user', user);
 app.use('/api/authentication', authentication);
-app.use('/api/product', product);
+app.use('/api/products', product);
 app.use('/api/images', uploadImg);
 app.use('/api/brands', brands);
+app.use('/api/occasions', occasions);
 
 
 app.listen(app.get('port'), function () {

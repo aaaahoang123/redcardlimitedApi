@@ -12,14 +12,12 @@ module.exports = {
                console.log(err);
                res.status(500);
                res.send({
-                   error: 'Server error, please contact us'
+                   'status': '500',
+                   'error': 'Server error, please contact us'
                });
                return;
            }
-           res.send({
-               'status': '200',
-               'attributes': result
-           });
+           res.send(result);
         });
     },
     getById: function (req, res, next) {
@@ -40,10 +38,7 @@ module.exports = {
              });
              return;
          }
-         res.send({
-             'status': '200',
-             'item': result[0]
-         });
+         res.send(result[0]);
       });
     },
     getByBrandId: function (req, res, next) {
@@ -64,10 +59,7 @@ module.exports = {
              });
              return;
          }
-          res.send({
-              'status': '200',
-              'item': result[0]
-          });
+          res.send(result);
       });
     },
     getByOccasionId: function (req, res, next) {
@@ -88,10 +80,43 @@ module.exports = {
                 });
                 return;
             }
-            res.send({
-                'status': '200',
-                'item': result[0]
-            });
+            res.send(result);
+        });
+    },
+    getByBrandNOccasion: function (req, res, next) {
+        productModel.find({occasionId: req.query.occasionId, brandId: req.query.brandId}, function (err, result) {
+            if (err) {
+                console.log(err);
+                res.status(500);
+                res.send({
+                    error: 'Server error, please contact us'
+                });
+                return;
+            }
+            else if (result.length === 0) {
+                res.status = 404;
+                res.send({
+                    error: '404',
+                    message: 'Not found'
+                });
+                return;
+            }
+            res.send(result);
+        });
+    },
+    // Post controller
+    postAProduct: function (req, res, next) {
+        var newProduct = new productModel(req.body);
+        newProduct.save(function (err, result) {
+            if (err) {
+                console.log(err);
+                res.status(500);
+                res.send({
+                    error: 'Server error, please contact us'
+                });
+                return;
+            }
+            res.send(result);
         });
     }
 };
