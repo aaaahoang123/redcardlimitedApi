@@ -9,6 +9,7 @@ module.exports = {
     checkNull: function (req,res,next) {
         var data = req.body;
         if (!data.username || !data.password || !data.fullName || !data.email || !data.phone || !data.address) {
+            res.status(403);
             res.send({
                 'status': '403',
                 'message': 'Username, password, full name, address, email, phone can\'t be null or undefined'
@@ -21,6 +22,7 @@ module.exports = {
     validateNamePass: function (req, res, next) {
         var data = req.body;
         if (data.username.length < 8 || data.password.length < 8) {
+            res.status(403);
             res.send({
                 'status': '403',
                 'message': 'Username and password must has 8 characters or longer'
@@ -39,6 +41,7 @@ module.exports = {
                 return;
             }
             else if (result.length !== 0) {
+                res.status(400);
                 res.send({
                     "status": "400",
                     "error": "This username has already existed"
