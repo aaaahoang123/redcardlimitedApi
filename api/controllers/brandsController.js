@@ -25,6 +25,7 @@ module.exports = {
             }
             next();
         })
+
     },
     postABrand: function (req, res, next) {
         var newBrand = new brandModel(req.body);
