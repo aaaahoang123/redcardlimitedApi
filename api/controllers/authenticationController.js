@@ -70,14 +70,17 @@ module.exports = {
       credential.save(function (err, result) {
           if (err) {
               console.log(err);
-              res.send(err);
+              res.status(500);
+              res.send({
+                  'status': 500,
+                  'error': 'Server\'s error'
+              });
               return;
           }
           res.send(result);
       })
   },
   logout: function (req, res, next) {
-      console.log(req);
       credentialModel.remove({token: req.body.token}, function (err) {
           if (err) {
               console.log(err);

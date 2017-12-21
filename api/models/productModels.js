@@ -19,6 +19,10 @@ var productSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'product_occasions'
     },
+    shortDetail: {
+        type: String,
+        required: 'Short detail can\'t be null'
+    },
     description: {
         type: String,
         required: 'Description can\'t be null'

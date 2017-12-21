@@ -34,6 +34,7 @@ module.exports = {
              console.log(err);
              res.status(500);
              res.send({
+                 status: '500',
                  error: 'Server error, please contact us'
              });
              return;
@@ -41,8 +42,8 @@ module.exports = {
          else if (result.length === 0) {
              res.status = 404;
              res.send({
-                 error: '404',
-                 message: 'Not found'
+                 status: '404',
+                 error: 'Not found'
              });
              return;
          }
@@ -55,15 +56,16 @@ module.exports = {
              console.log(err);
              res.status(500);
              res.send({
-                 error: 'Server error, please contact us'
+                 'status': '500',
+                 'error': 'Server error, please contact us'
              });
              return;
          }
          else if (result.length === 0) {
              res.status = 404;
              res.send({
-                 error: '404',
-                 message: 'Not found'
+                 status: '404',
+                 error: 'Not found'
              });
              return;
          }
@@ -76,6 +78,7 @@ module.exports = {
                 console.log(err);
                 res.status(500);
                 res.send({
+                    status: '500',
                     error: 'Server error, please contact us'
                 });
                 return;
@@ -83,8 +86,8 @@ module.exports = {
             else if (result.length === 0) {
                 res.status = 404;
                 res.send({
-                    error: '404',
-                    message: 'Not found'
+                    status: '404',
+                    error: 'Not found'
                 });
                 return;
             }
@@ -97,6 +100,7 @@ module.exports = {
                 console.log(err);
                 res.status(500);
                 res.send({
+                    status: '500',
                     error: 'Server error, please contact us'
                 });
                 return;
@@ -104,8 +108,8 @@ module.exports = {
             else if (result.length === 0) {
                 res.status = 404;
                 res.send({
-                    error: '404',
-                    message: 'Not found'
+                    status: '404',
+                    error: 'Not found'
                 });
                 return;
             }
@@ -120,6 +124,7 @@ module.exports = {
                 console.log(err);
                 res.status(500);
                 res.send({
+                    status: '500',
                     error: 'Server error, please contact us'
                 });
                 return;
