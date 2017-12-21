@@ -4,10 +4,15 @@ const allModels = require('../models/productModels'),
     productModel = allModels.productModel,
     brandModel = allModels.brandModel,
     occasionModel = allModels.occasionModel;
+require('mongoose-pagination');
 
 module.exports = {
     getAll: function (req, res, next) {
-        productModel.find({}, function (err, result) {
+        var page = 1, limit = 10;
+        if (req.query.page) {page = Number(req.query.page);}
+        if (req.query.limit) {limit = Number(req.query.limit);}
+        productModel.find({status: 1}).paginate(page, limit, function (err, result, total) {
+            console.log(page + " , " + limit);
            if (err) {
                console.log(err);
                res.status(500);
@@ -17,7 +22,10 @@ module.exports = {
                });
                return;
            }
-           res.send(result);
+           res.send({
+               'totalPage': Math.ceil(total/limit),
+               'items': result
+           });
         });
     },
     getById: function (req, res, next) {
