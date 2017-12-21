@@ -77,6 +77,7 @@ module.exports = {
       })
   },
   logout: function (req, res, next) {
+      console.log(req);
       credentialModel.delete({token: req.body.token}, function (err) {
           if (err) {
               console.log(err);
