@@ -13,11 +13,11 @@ var productSchema = new mongoose.Schema({
     },
     brandId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'product_brands'
+        ref: 'brands'
     },
-    occasionId: {
+    categoryId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'product_occasions'
+        ref: 'categories'
     },
     shortDetail: {
         type: String,
@@ -74,10 +74,10 @@ var brandSchema = new mongoose.Schema({
     }
 });
 
-var occasionSchema = new mongoose.Schema({
+var categorySchema = new mongoose.Schema({
     name: {
         type: String,
-        required: 'Occasion name can not be null'
+        required: 'Category name can not be null'
     },
     description: String,
     status: {
@@ -98,5 +98,5 @@ var occasionSchema = new mongoose.Schema({
 module.exports = {
     productModel: mongoose.model('products', productSchema),
     brandModel: mongoose.model('brands', brandSchema),
-    occasionModel: mongoose.model('occasions', occasionSchema)
+    categoryModel: mongoose.model('categories', categorySchema)
 };

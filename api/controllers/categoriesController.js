@@ -1,6 +1,6 @@
 'use strict';
 
-const occasionModel = require('../models/productModels').occasionModel,
+const categoryModel = require('../models/productModels').categoryModel,
     credentialModel = require('../models/credentialModel');
 
 module.exports = {
@@ -26,9 +26,9 @@ module.exports = {
             next();
         })
     },
-    postAnOccasion: function (req, res, next) {
-        var newOccasion = new occasionModel(req.body);
-        newOccasion.save(function (err, result) {
+    postACategory: function (req, res, next) {
+        var newCategory = new categoryModel(req.body);
+        newCategory.save(function (err, result) {
             if (err) {
                 console.log(err);
                 res.status(500);
@@ -41,8 +41,8 @@ module.exports = {
             res.send(result);
         })
     },
-    getAllOccasion: function (req, res) {
-        occasionModel.find({}, function (err, result) {
+    getAllCategories: function (req, res) {
+        categoryModel.find({}, function (err, result) {
             if (err) {
                 console.log(err);
                 res.status(500);
@@ -55,8 +55,8 @@ module.exports = {
             res.send(result);
         })
     },
-    getAnOccasion: function (req, res) {
-        occasionModel.find({_id: req.params.id}, function (err, result) {
+    getACategory: function (req, res) {
+        categoryModel.find({_id: req.params.id}, function (err, result) {
             if (err) {
                 console.log(err);
                 res.status(500);

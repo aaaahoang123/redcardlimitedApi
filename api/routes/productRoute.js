@@ -4,11 +4,11 @@ const express= require('express'),
     controllers = require('../controllers/productController');
 
 router.get('/', function (req, res, next) {
-    if (req.query.brandId && req.query.occasionId) {
-        controllers.getByBrandNOccasion(req, res, next);
+    if (req.query.brandId && req.query.categoryId) {
+        controllers.getByBrandNCategory(req, res, next);
     }
-    else if (req.query.occasionId) {
-        controllers.getByOccasionId(req, res, next);
+    else if (req.query.categoryId) {
+        controllers.getByCategoryId(req, res, next);
     }
     else if (req.query.brandId) {
         controllers.getByBrandId(req, res, next);

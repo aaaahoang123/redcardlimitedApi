@@ -72,8 +72,8 @@ module.exports = {
           res.send(result);
       });
     },
-    getByOccasionId: function (req, res, next) {
-        productModel.find({occasionId: req.query.occasionId}, function (err, result) {
+    getByCategoryId: function (req, res, next) {
+        productModel.find({categoryId: req.query.categoryId}, function (err, result) {
             if (err) {
                 console.log(err);
                 res.status(500);
@@ -94,8 +94,8 @@ module.exports = {
             res.send(result);
         });
     },
-    getByBrandNOccasion: function (req, res, next) {
-        productModel.find({occasionId: req.query.occasionId, brandId: req.query.brandId}, function (err, result) {
+    getByBrandNCategory: function (req, res, next) {
+        productModel.find({categoryId: req.query.categoryId, brandId: req.query.brandId}, function (err, result) {
             if (err) {
                 console.log(err);
                 res.status(500);
