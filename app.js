@@ -9,7 +9,6 @@ const express = require('express'),
 var user = require('./api/routes/userRoute'),
     authentication = require('./api/routes/authenticationRoute'),
     product = require('./api/routes/productRoute'),
-    uploadImg = require('./api/routes/uploadImgRoute'),
     brands = require('./api/routes/brandsRoute'),
     categories = require('./api/routes/categoriesRoute');
 mongoose.Promise = global.Promise;
@@ -29,7 +28,6 @@ app.use(bodyParser.json());
 app.use('/api/user', user);
 app.use('/api/authentication', authentication);
 app.use('/api/products', product);
-app.use('/api/images', uploadImg);
 app.use('/api/brands', brands);
 app.use('/api/categories', categories);
 

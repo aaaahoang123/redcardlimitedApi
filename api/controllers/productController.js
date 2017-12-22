@@ -51,69 +51,66 @@ module.exports = {
       });
     },
     getByBrandId: function (req, res, next) {
-      productModel.find({brandId: req.query.brandId}, function (err, result) {
-         if (err) {
-             console.log(err);
-             res.status(500);
-             res.send({
-                 'status': '500',
-                 'error': 'Server error, please contact us'
-             });
-             return;
-         }
-         else if (result.length === 0) {
-             res.status = 404;
-             res.send({
-                 status: '404',
-                 error: 'Not found'
-             });
-             return;
-         }
-          res.send(result);
-      });
-    },
-    getByCategoryId: function (req, res, next) {
-        productModel.find({categoryId: req.query.categoryId}, function (err, result) {
+        var page = 1, limit = 10;
+        if (req.query.page) {page = Number(req.query.page);}
+        if (req.query.limit) {limit = Number(req.query.limit);}
+        productModel.find({status: 1, brandId: req.query.brandId}).paginate(page, limit, function (err, result, total) {
+            console.log(page + " , " + limit);
             if (err) {
                 console.log(err);
                 res.status(500);
                 res.send({
-                    status: '500',
-                    error: 'Server error, please contact us'
+                    'status': '500',
+                    'error': 'Server error, please contact us'
                 });
                 return;
             }
-            else if (result.length === 0) {
-                res.status = 404;
+            res.send({
+                'totalPage': Math.ceil(total/limit),
+                'items': result
+            });
+        });
+    },
+    getByCategoryId: function (req, res, next) {
+        var page = 1, limit = 10;
+        if (req.query.page) {page = Number(req.query.page);}
+        if (req.query.limit) {limit = Number(req.query.limit);}
+        productModel.find({status: 1, categoryId: req.query.categoryId}).paginate(page, limit, function (err, result, total) {
+            console.log(page + " , " + limit);
+            if (err) {
+                console.log(err);
+                res.status(500);
                 res.send({
-                    status: '404',
-                    error: 'Not found'
+                    'status': '500',
+                    'error': 'Server error, please contact us'
                 });
                 return;
             }
-            res.send(result);
+            res.send({
+                'totalPage': Math.ceil(total/limit),
+                'items': result
+            });
         });
     },
     getByBrandNCategory: function (req, res, next) {
-        productModel.find({categoryId: req.query.categoryId, brandId: req.query.brandId}, function (err, result) {
+        var page = 1, limit = 10;
+        if (req.query.page) {page = Number(req.query.page);}
+        if (req.query.limit) {limit = Number(req.query.limit);}
+        productModel.find({status: 1, categoryId: req.query.categoryId, brandId: req.query.brandId}).paginate(page, limit, function (err, result, total) {
+            console.log(page + " , " + limit);
             if (err) {
                 console.log(err);
                 res.status(500);
                 res.send({
-                    status: '500',
-                    error: 'Server error, please contact us'
+                    'status': '500',
+                    'error': 'Server error, please contact us'
                 });
                 return;
             }
-            else if (result.length === 0) {
-                res.status = 404;
-                res.send({
-                    status: '404',
-                    error: 'Not found'
-                });
-                return;
-            }
-            res.send(result);
+            res.send({
+                'totalPage': Math.ceil(total/limit),
+                'items': result
+            });
         });
     },
     // Post controller
