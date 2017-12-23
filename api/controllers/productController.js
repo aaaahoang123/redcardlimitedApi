@@ -47,8 +47,35 @@ module.exports = {
              });
              return;
          }
-         res.send(result[0]);
+         req.getIdResult = result[0];
+         next();
       });
+    },
+    getBrandNameAndRes: function (req, res, next) {
+        brandModel.find({_id: req.getIdResult.brandId}, function (err, result) {
+            if (err) {
+                console.log(err);
+                res.status(500);
+                res.send({
+                    status: '500',
+                    error: 'Server error, please contact us'
+                });
+                return;
+            }
+            else if (result.length === 0) {
+                res.status = 404;
+                res.send({
+                    status: '404',
+                    error: 'Not found'
+                });
+                return;
+            }
+            res.send({
+                brandName: result[0].name,
+                item: req.getIdResult
+            });
+        });
+
     },
     getByBrandId: function (req, res, next) {
         var page = 1, limit = 10;

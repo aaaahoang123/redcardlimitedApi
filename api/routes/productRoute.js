@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
         controllers.getAll(req, res, next);
     }
 })
-    .get('/:id', controllers.getById)
+    .get('/:id', controllers.getById, controllers.getBrandNameAndRes)
     .post('/', brandController.checkToken, controllers.postAProduct);
 
 module.exports = router;
