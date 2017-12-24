@@ -2,8 +2,7 @@
 
 const allModels = require('../models/productModels'),
     productModel = allModels.productModel,
-    brandModel = allModels.brandModel,
-    occasionModel = allModels.occasionModel;
+    brandModel = allModels.brandModel;
 require('mongoose-pagination');
 
 module.exports = {
