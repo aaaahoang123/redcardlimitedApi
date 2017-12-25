@@ -27,6 +27,27 @@ module.exports = {
            });
         });
     },
+    getByMultiId: function(req, res, next) {
+        var page = 1, limit = 10;
+        if (req.query.page) {page = Number(req.query.page);}
+        if (req.query.limit) {limit = Number(req.query.limit);}
+        productModel.find({_id: {$in: JSON.parse(req.query.itemIds)}}).paginate(page, limit, function (err, result, total) {
+            console.log(page + " , " + limit);
+            if (err) {
+                console.log(err);
+                res.status(500);
+                res.send({
+                    'status': '500',
+                    'error': 'Server error, please contact us'
+                });
+                return;
+            }
+            res.send({
+                'totalPage': Math.ceil(total/limit),
+                'items': result
+            });
+        });
+    },
     getById: function (req, res, next) {
       productModel.find({_id: req.params.id}, function (err, result) {
          if (err) {
