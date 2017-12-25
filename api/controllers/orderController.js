@@ -1,11 +1,19 @@
 'use strict';
 
-const brandModel = require('../models/productModels').brandModel;
+const orderModel = require('../models/orderModels');
 
 module.exports = {
-    postABrand: function (req, res, next) {
-        var newBrand = new brandModel(req.body);
-        newBrand.save(function (err, result) {
+    addAnOrder: function(req, res, next) {
+        var newOrder = new orderModel({
+            accountId: req.accountId,
+            customerName: req.body.customerName,
+            email: req.body.email,
+            phone: req.body.phone,
+            address: req.body.address,
+            products: req.body.products,
+            totalPrice: req.body.totalPrice
+        });
+        newOrder.save(function(err, result) {
             if (err) {
                 console.log(err);
                 res.status(500);
@@ -18,8 +26,8 @@ module.exports = {
             res.send(result);
         })
     },
-    getAllBrand: function (req, res) {
-        brandModel.find({}, function (err, result) {
+    getAnOrder: function(req, res, next) {
+        orderModel.find({_id: req.params.id, accountId: req.accountId}, function(err, result) {
             if (err) {
                 console.log(err);
                 res.status(500);
@@ -32,8 +40,8 @@ module.exports = {
             res.send(result);
         })
     },
-    getABrand: function (req, res) {
-        brandModel.find({_id: req.params.id}, function (err, result) {
+    getAllOrders: function(req, res, next) {
+        orderModel.find({accountId: req.accountId}, function(err, result) {
             if (err) {
                 console.log(err);
                 res.status(500);

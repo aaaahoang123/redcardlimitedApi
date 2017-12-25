@@ -96,5 +96,58 @@ module.exports = {
               'message': 'Logout success'
           })
       })
-  }
+  },
+  checkAdminToken: function (req, res, next) {
+        credentialModel.find({token: req.headers.token}, function (err, result) {
+            if (err) {
+                console.log(err);
+                res.status(500);
+                res.send({
+                    status: '500',
+                    error: 'Server error'
+                });
+                return;
+            }
+            if (result.length === 0) {
+                res.status(404);
+                res.send({
+                    status: '404',
+                    error: 'Invalid Token'
+                });
+                return;
+            }
+            if (result[0].type !== 0) {
+                res.status(550);
+                res.send({
+                    status: '550',
+                    error: 'Permission Denied'
+                });
+                return;
+            }
+            next();
+        })
+  },
+  checkToken: function (req, res, next) {
+        credentialModel.find({token: req.headers.token}, function (err, result) {
+            if (err) {
+                console.log(err);
+                res.status(500);
+                res.send({
+                    status: '500',
+                    error: 'Server error'
+                });
+                return;
+            }
+            if (result.length === 0) {
+                res.status(404);
+                res.send({
+                    status: '404',
+                    error: 'Invalid Token'
+                });
+                return;
+            }
+            req.accountId = result[0].accountId;
+            next();
+        })
+    }
 };

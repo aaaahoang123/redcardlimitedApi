@@ -10,7 +10,8 @@ var user = require('./api/routes/userRoute'),
     authentication = require('./api/routes/authenticationRoute'),
     product = require('./api/routes/productRoute'),
     brands = require('./api/routes/brandsRoute'),
-    categories = require('./api/routes/categoriesRoute');
+    categories = require('./api/routes/categoriesRoute'),
+    order = require('./api/routes/orderRoute');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://aaaahoang123:q07cmf4gt1kb@ds141796.mlab.com:41796/rclapi');
 
@@ -30,6 +31,7 @@ app.use('/api/authentication', authentication);
 app.use('/api/products', product);
 app.use('/api/brands', brands);
 app.use('/api/categories', categories);
+app.use('/api/orders', order);
 
 
 app.listen(app.get('port'), function () {
