@@ -105,6 +105,15 @@ module.exports = {
             },
             {
                 $unwind: '$customerInfo'
+            },
+            {
+                $project: {
+                    _id: 1,
+                    username: 1,
+                    status: 1,
+                    type: 1,
+                    customerInfo: 1
+                }
             }
         ], function (err, result) {
             if (err) {
