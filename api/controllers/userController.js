@@ -3,6 +3,7 @@
 var userModel = require('../models/userModel'),
     userAccModel = userModel.userAcc,
     cusInfoModel = userModel.cusInfo;
+require('mongoose-pagination');
 
 module.exports = {
     // check null của request
@@ -91,5 +92,31 @@ module.exports = {
                 });
             });
         });
+    },
+    getAllAccountNCusinfo: function (req, res, next) {
+        userAccModel.aggregate([
+            {
+                $lookup: {
+                    from: 'customer_infos',
+                    localField: 'customerId',
+                    foreignField: '_id',
+                    as: 'customerInfo'
+                }
+            },
+            {
+                $unwind: '$customerInfo'
+            }
+        ], function (err, result) {
+            if (err) {
+                console.log(err);
+                res.status(500);
+                res.send({
+                    status: '500',
+                    error: 'Server error'
+                });
+                return;
+            }
+            res.send(result);
+        })
     }
 };
