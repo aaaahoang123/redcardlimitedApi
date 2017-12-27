@@ -175,5 +175,19 @@ module.exports = {
             }
             res.send(result);
         });
+    },
+    updateAProduct: function (req, res, next) {
+        productModel.findOneAndUpdate({_id: req.params.id}, {$set: req.body}, {new: true}, function (err, result) {
+            if (err) {
+                console.log(err);
+                res.status(500);
+                res.send({
+                    status: '500',
+                    error: 'Server error, please contact us'
+                });
+                return;
+            }
+            res.send(result);
+        });
     }
 };

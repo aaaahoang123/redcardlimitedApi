@@ -21,6 +21,7 @@ router.get('/', function (req, res, next) {
     }
 })
     .get('/:id', controllers.getById, controllers.getBrandNameAndRes)
-    .post('/', authenticationController.checkAdminToken, controllers.postAProduct);
+    .post('/', authenticationController.checkAdminToken, controllers.postAProduct)
+    .put('/:id', authenticationController.checkAdminToken, controllers.updateAProduct);
 
 module.exports = router;
