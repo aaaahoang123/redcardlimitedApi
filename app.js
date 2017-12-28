@@ -17,7 +17,6 @@ mongoose.connect('mongodb://aaaahoang123:q07cmf4gt1kb@ds141796.mlab.com:41796/rc
 
 // cors to allow post, put method
 app.use(cors());
-app.use('/', express.static('public'));
 app.use(fileUpload());
 app.use(express.static('./public'));
 app.set('port', (process.env.PORT || 3000));
