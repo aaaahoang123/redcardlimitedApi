@@ -1,9 +1,9 @@
-const orderApi = "https://rlcapi.herokuapp.com/api/orders/",
-    productApi = 'https://rlcapi.herokuapp.com/api/products/',
-    userApi = 'https://rlcapi.herokuapp.com/api/user/',
-    brandApi = 'https://rlcapi.herokuapp.com/api/brands/',
-    categoryApi = 'https://rlcapi.herokuapp.com/api/categories/',
-    authenticationApi = 'https://rlcapi.herokuapp.com/api/authentication/';
+const orderApi = "/api/orders/",
+    productApi = '/api/products/',
+    userApi = '/api/user/',
+    brandApi = '/api/brands/',
+    categoryApi = '/api/categories/',
+    authenticationApi = '/api/authentication/';
 
 // config toastr
 toastr.options = {
