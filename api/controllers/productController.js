@@ -7,7 +7,7 @@ require('mongoose-pagination');
 
 module.exports = {
     getAll: function (req, res, next) {
-        var page = 1, limit = 10;
+        var page = 1, limit = 12;
         if (req.query.page) {page = Number(req.query.page);}
         if (req.query.limit) {limit = Number(req.query.limit);}
         productModel.find({status: 1}).paginate(page, limit, function (err, result, total) {
