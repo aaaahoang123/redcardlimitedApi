@@ -6,7 +6,14 @@ const express = require('express'),
     controllers = require('../controllers/orderController');
 
 router.post('/', authenticationController.checkToken, controllers.addAnOrder)
-    .get('/', authenticationController.checkToken, controllers.getAllOrders);
+    .get('/', function (req, res, next) {
+        if (req.query.permission === 'admin') {
+            authenticationController.checkAdminToken(req, res, next);
+        }
+        else {
+            authenticationController.checkToken(req, res, next)
+        }
+    }, controllers.getAllOrders);
 
 router.get('/:id', authenticationController.checkToken, controllers.getAnOrder);
 

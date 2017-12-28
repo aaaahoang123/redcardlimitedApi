@@ -124,6 +124,7 @@ module.exports = {
                 });
                 return;
             }
+            req.adminPermission = true;
             next();
         })
   },
