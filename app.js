@@ -13,7 +13,7 @@ var user = require('./api/routes/userRoute'),
     categories = require('./api/routes/categoriesRoute'),
     order = require('./api/routes/orderRoute');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://aaaahoang123:q07cmf4gt1kb@ds141796.mlab.com:41796/rclapi');
+mongoose.connect('mongodb://redcardlimited:redcardlimited@ds141796.mlab.com:41796/rclapi');
 
 // cors to allow post, put method
 app.use(cors());

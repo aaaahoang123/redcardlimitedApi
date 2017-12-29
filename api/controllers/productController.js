@@ -28,7 +28,7 @@ module.exports = {
         });
     },
     getByMultiId: function(req, res, next) {
-        var page = 1, limit = 10;
+        var page = 1, limit = 12;
         if (req.query.page) {page = Number(req.query.page);}
         if (req.query.limit) {limit = Number(req.query.limit);}
         productModel.find({_id: {$in: JSON.parse(req.query.itemIds)}}).paginate(page, limit, function (err, result, total) {
@@ -98,7 +98,7 @@ module.exports = {
 
     },
     getByBrandId: function (req, res, next) {
-        var page = 1, limit = 10;
+        var page = 1, limit = 12;
         if (req.query.page) {page = Number(req.query.page);}
         if (req.query.limit) {limit = Number(req.query.limit);}
         productModel.find({status: 1, brandId: req.query.brandId}).paginate(page, limit, function (err, result, total) {
@@ -119,7 +119,7 @@ module.exports = {
         });
     },
     getByCategoryId: function (req, res, next) {
-        var page = 1, limit = 10;
+        var page = 1, limit = 12;
         if (req.query.page) {page = Number(req.query.page);}
         if (req.query.limit) {limit = Number(req.query.limit);}
         productModel.find({status: 1, categoryId: req.query.categoryId}).paginate(page, limit, function (err, result, total) {
@@ -140,7 +140,7 @@ module.exports = {
         });
     },
     getByBrandNCategory: function (req, res, next) {
-        var page = 1, limit = 10;
+        var page = 1, limit = 12;
         if (req.query.page) {page = Number(req.query.page);}
         if (req.query.limit) {limit = Number(req.query.limit);}
         productModel.find({status: 1, categoryId: req.query.categoryId, brandId: req.query.brandId}).paginate(page, limit, function (err, result, total) {
