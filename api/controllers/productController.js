@@ -21,9 +21,13 @@ module.exports = {
                });
                return;
            }
+           var arrayitems = [];
+           for (var i=result.length-1; i>=0; i--) {
+               arrayitems.push(result[i]);
+           }
            res.send({
                'totalPage': Math.ceil(total/limit),
-               'items': result
+               'items': arrayitems
            });
         });
     },
@@ -112,9 +116,13 @@ module.exports = {
                 });
                 return;
             }
+            var items = [];
+            for (var i=result.length-1; i>=0; i--) {
+                items.push(result[i]);
+            }
             res.send({
                 'totalPage': Math.ceil(total/limit),
-                'items': result
+                'items': items
             });
         });
     },
@@ -133,9 +141,13 @@ module.exports = {
                 });
                 return;
             }
+            var items = [];
+            for (var i=result.length-1; i>=0; i--) {
+                items.push(result[i]);
+            }
             res.send({
                 'totalPage': Math.ceil(total/limit),
-                'items': result
+                'items': items
             });
         });
     },
@@ -154,9 +166,13 @@ module.exports = {
                 });
                 return;
             }
+            var items = [];
+            for (var i=result.length-1; i>=0; i--) {
+                items.push(result[i]);
+            }
             res.send({
                 'totalPage': Math.ceil(total/limit),
-                'items': result
+                'items': items
             });
         });
     },
